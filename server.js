@@ -8,8 +8,13 @@ const  path = require('path');
 
 const app =express();
 
-app.use(express.static('public')) 
+const mainRouter =require('./routes/index');
 
+app.use(express.static('public')) 
+// agar koi prefix rakha hai tou hum use kr skhte hai means mainrouter ko second rkhna
+// app.use('/api',mainRouter)
+app.use(mainRouter)
+ 
 // yeh ek template engine hai  set and get krte hai
 
 app.set('view engine', 'ejs');
@@ -31,34 +36,7 @@ const PORT = process.env.PORT  || 3000;
 
 // bar bar serve restart se bachney ke lye hum ek package use krte wo hai nodemon
 
-app.get('/', (req, res)=>{
-//      res.send('<h1>hello baloch</h1>');
-//  for all path we import path module
-    // res.sendFile(path.resolve(__dirname) + '/index.html');
-    res.render('index', {
-        tittle:"my title page"
-    });
 
-})
-
-app.get('/about', (req, res)=>{
-//      res.send('<h1>hello baloch</h1>');
-//  for all path we import path module  
-    // res.sendFile(path.resolve(__dirname) + '/about.html');
-    res.render('about' ,{
-        tittle:"my about page"
-    });
-
-})
-
-app.get('/download', (req, res)=>{
-    //      res.send('<h1>hello baloch</h1>');
-    //  for all path we import path module  
-        res.download(path.resolve(__dirname) + '/about.html' );
-    
-    })
-
-// 
 
 app.listen(PORT ,()=>console.log(`listen hello baloch from ${PORT}`))
 
