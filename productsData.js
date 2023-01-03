@@ -2,17 +2,17 @@
 const products = [
     {
         id:'1',
-        name:'iphone',
+        name:'Iphone',
         price:300
     },
     {
         id:'2',
-        name:'iphone',
+        name:'Nokia',
         price:300
     },
     {
         id:'3',
-        name:'iphone',
+        name:'LG',
         price:300
     }
 ]

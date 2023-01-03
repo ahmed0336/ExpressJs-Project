@@ -5,6 +5,7 @@ const express = require('express');
 
 // yeh node me hota path module 
 const  path = require('path');
+const ErrorHandle = require('./erros/ErrorHandle');
 
 const app =express();
 // import kro kisi b router ko
@@ -13,6 +14,9 @@ const mainRouter =require('./routes/index');
 const productRouter =require('./routes/products');
 
 app.use(express.static('public')) 
+app.use(express.json()) 
+// is ke kre se ab hum post api me json data get kr skhte with help of json middleware
+
 // agar koi prefix rakha hai tou hum use kr skhte hai means mainrouter ko second rkhna
 // app.use('/api',mainRouter)
 app.use(mainRouter)
@@ -43,6 +47,42 @@ const PORT = process.env.PORT  || 3000;
 
 // bar bar serve restart se bachney ke lye hum ek package use krte wo hai nodemon
 
+// error handling ==>gobal middleware
+
+app.use((req ,res ,next) =>{
+
+    return res.json({ message: 'Page Not Found!' });
+ 
+});
+
+// error ko throw to hum yahan catch krege
+// express error handling error middleware
+
+app.use((err,req ,res,next)=>{
+    if(err instanceof ErrorHandle ){
+        res.status(err.status).json({
+            error: {
+                message:err.message,
+                status:err.status
+            }
+        
+        })
+
+    }
+    else{
+       res.staus(500).json({
+        error: {
+            message:err.message,
+            status:err.status
+        }
+    
+       })
+    }
+    // console.log("Error",err.message)
+   
+    // next()
+
+})
 
 
 app.listen(PORT ,()=>console.log(`listen hello baloch from ${PORT}`))
