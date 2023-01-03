@@ -7,13 +7,20 @@ const express = require('express');
 const  path = require('path');
 
 const app =express();
-
+// import kro kisi b router ko
 const mainRouter =require('./routes/index');
+
+const productRouter =require('./routes/products');
 
 app.use(express.static('public')) 
 // agar koi prefix rakha hai tou hum use kr skhte hai means mainrouter ko second rkhna
 // app.use('/api',mainRouter)
 app.use(mainRouter)
+
+// phir usko express me register kro router ko
+app.use(productRouter)
+
+
  
 // yeh ek template engine hai  set and get krte hai
 

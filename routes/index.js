@@ -1,11 +1,14 @@
 // const router =require('express').Router();
 // or
 const express = require('express');
+const { append } = require('express/lib/response');
 const router = express.Router();
 
 const apikeymiddleware = require('../middlewares/apiKey');
 
-
+// router level middleware ,means subko query banaya hai access krne ke lye 
+// router.use(apikeymiddleware)
+ 
 
 router.get('/', (req, res) => {
     //      res.send('<h1>hello baloch</h1>');
@@ -32,9 +35,11 @@ router.get('/download', (req, res) => {
     //  for all path we import path module  
     res.download(path.resolve(__dirname) + '/about.html');
 
-})
+}) 
+// start
 
 router.get('/api/products', apikeymiddleware,  (req, res) => {
+    // router.get('/api/products',   (req, res) => {
     //apis ke lye hum send nai balke json (array of object) data send krte hai
     //   
     res.json(
@@ -55,7 +60,7 @@ router.get('/api/products', apikeymiddleware,  (req, res) => {
 
 })
 
-
+// end
 
 
 
