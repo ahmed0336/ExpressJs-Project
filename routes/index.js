@@ -38,27 +38,29 @@ router.get('/download', (req, res) => {
 }) 
 // start
 
-router.get('/api/products', apikeymiddleware,  (req, res) => {
-    // router.get('/api/products',   (req, res) => {
+// router.get('/api/products', apikeymiddleware,  (req, res) => {
+    
+//     res.json(
+//         [
+//             {
+//                 id: '11',
+//                 name: 'ahmed'
+
+//             },
+//             {
+//                 id:'22',
+//                 name:'safdar'
+                     
+//             }
+//         ]
+//     )
+
+
+// })
+
+// router.get('/api/products',   (req, res) => {
     //apis ke lye hum send nai balke json (array of object) data send krte hai
     //   
-    res.json(
-        [
-            {
-                id: '11',
-                name: 'ahmed'
-
-            },
-            {
-                id:'22',
-                name:'safdar'
-                     
-            }
-        ]
-    )
-
-
-})
 
 // end
 

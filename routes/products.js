@@ -1,5 +1,11 @@
+const res = require('express/lib/response');
+
 const router =require('express').Router();
 
+const products =require('../productsData')
+
+
+// this route for view 
 
 router.get('/products', (req, res) => {
     //      res.send('<h1>hello baloch</h1>');
@@ -11,8 +17,14 @@ router.get('/products', (req, res) => {
 
 })
 
+router.get('/api/products', (req,res)=>{
 
-module.exports=router
+    res.json({products})
+
+})
+
+
+module.exports= router;
 
 
 // routers ko register krna zarori hai
